@@ -17,4 +17,15 @@ export class AllPostsComponent implements OnInit {
       this.postArr = val
     })
   }
+
+  onDelete(id, postImgPath) {
+    this.postService.deleteImage(id, postImgPath);
+  }
+
+  onFeatured(id, status) {
+    const featuredData = {
+      isFeatured: status
+    }
+    this.postService.markFeatured(id, featuredData);
+  }
 }

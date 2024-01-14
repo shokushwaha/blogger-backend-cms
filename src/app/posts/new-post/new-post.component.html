@@ -1,75 +1,77 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center">
-            <h3 class="text-theme-primary">Add New Post</h3>
+            <h3 class="text-theme-primary">{{formStatus}} Post</h3>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, eveniet.</p>
         </div>
     </div>
+    <div *ngIf="postForm">
+        <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="card shadow-effect">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Title</label>
+                                <input type="text" class="form-control" name="title" formControlName="title"
+                                    (keyup)="onTitleChanged($event)">
+                            </div>
+                            <div class="form-group">
+                                <label for="permalink">Permalink</label>
+                                <input type="text" class="form-control" name="permalink" formControlName="permalink">
 
-    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="card shadow-effect">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" class="form-control" (keyup)="onTitleChanged($event)"
-                                formControlName="title">
-                        </div>
-                        <div class="form-group">
-                            <label>Permalink</label>
-                            <input type="text" class="form-control" name="permalink" [(ngModel)]="permalink"
-                                formControlName="permalink">
-
-                        </div>
-                        <div class="form-group">
-                            <label>Excerpt</label>
-                            <input type="text" class="form-control" formControlName="excerpt">
+                            </div>
+                            <div class="form-group">
+                                <label for="excerpt">Excerpt</label>
+                                <input type="text" class="form-control" formControlName="excerpt">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-5">
-                <div class="form-group">
-                    <label>
-                        Select category
-                    </label>
-                    <select class="form-control" formControlName="category">
-                        <option value="" disabled>Select atleast one category</option>
-                        <option value="{{category.id}}-{{category.data.category}}" *ngFor="let category of categories">
-                            {{category.data.category}}
-                        </option>
-                    </select>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="category">
+                            Select category
+                        </label>
+                        <select class="form-control" formControlName="category">
+                            <option value="" disabled>Select atleast one category</option>
+                            <option value="{{category.id}}-{{category.data.category}}"
+                                *ngFor="let category of categories">
+                                {{category.data.category}}
+                            </option>
+                        </select>
 
-                </div>
-                <div class="form-group">
-                    <label>
-                        Post Image
-                    </label>
-                    <img [src]="imgSrc" alt="Upload Image" class="form-control img-fluid img-preview">
-                    <input type="file" class="form-control" accept="image/*" (change)="showPreview($event)"
-                        formControlName="postImg">
+                    </div>
+                    <div class="form-group">
+                        <label for="postImg">
+                            Post Image
+                        </label>
+                        <img [src]="imgSrc" alt="Upload Image" class="form-control img-fluid img-preview">
+                        <input type="file" class="form-control" accept="image/*" (change)="showPreview($event)"
+                            formControlName="postImg">
 
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-3 mb-5">
-            <div class="col-md-12">
-                <div class="card shadow-effect">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="content">Content</label>
-                            <angular-editor placeholder="Add content" formControlName="content"></angular-editor>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12 text-center mb-5">
-                <button class="btn btn-info btn-sub">Save Post</button>
-                <button class="btn btn-warning ml-3" routerLink="/posts">Back to Post</button>
+            <div class="row mt-3 mb-5">
+                <div class="col-md-12">
+                    <div class="card shadow-effect">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <angular-editor placeholder="Add content" formControlName="content"></angular-editor>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-center mb-5">
+                    <button class="btn btn-info btn-sub">{{formStatus}} Post</button>
+                    <button class="btn btn-warning ml-3" routerLink="/posts">Back to Post</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </div>

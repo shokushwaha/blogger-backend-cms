@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { PostsService } from 'src/app/services/posts.service';
@@ -15,17 +16,45 @@ export class NewPostComponent implements OnInit {
   imgSrc: any = ""
   selectedImg: any
   categories = []
-
+  post: any
   postForm: FormGroup
+  formStatus: string = "Add New"
+  queryId: string
 
-  constructor(private categoryServie: CategoriesService, private fb: FormBuilder, private postService: PostsService) {
-    this.postForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(10)]],
-      permalink: ['', Validators.required],
-      excerpt: ['', [Validators.required, Validators.minLength(10)]],
-      postImg: ['', Validators.required],
-      category: ['', Validators.required],
-      content: ['', Validators.required]
+  constructor(
+    private categoryServie: CategoriesService,
+    private fb: FormBuilder,
+    private postService: PostsService,
+    private route: ActivatedRoute) {
+
+    this.route.queryParams.subscribe(val => {
+      this.queryId = val['id']
+
+      if (this.queryId) {
+        this.postService.loadOneData(val['id']).subscribe(post => {
+          this.post = post
+          this.postForm = this.fb.group({
+            title: [this.post.title, [Validators.required, Validators.minLength(10)]],
+            permalink: [this.post.permalink, Validators.required],
+            excerpt: [this.post.excerpt, [Validators.required, Validators.minLength(10)]],
+            postImg: ['', Validators.required],
+            category: [`${this.post.category.categoryId}-${this.post.category.category}`, Validators.required],
+            content: [this.post.content, Validators.required]
+          })
+          this.imgSrc = this.post.postImgPath
+          this.formStatus = "Edit"
+        })
+      }
+      else {
+        this.postForm = this.fb.group({
+          title: ['', [Validators.required, Validators.minLength(10)]],
+          permalink: ['', Validators.required],
+          excerpt: ['', [Validators.required, Validators.minLength(10)]],
+          postImg: ['', Validators.required],
+          category: ['', Validators.required],
+          content: ['', Validators.required]
+        })
+      }
     })
   }
 
@@ -73,7 +102,13 @@ export class NewPostComponent implements OnInit {
       createdAt: new Date()
     }
 
-    this.postService.saveData(postData);
+    if (this.formStatus == "Edit") {
+      this.postService.updateData(this.queryId, postData);
+    }
+    else if (this.formStatus == "Add New") {
+      this.postService.saveData(postData);
+    }
+
     this.postForm.reset();
     this.imgSrc = "";
   }

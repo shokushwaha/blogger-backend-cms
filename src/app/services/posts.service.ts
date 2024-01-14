@@ -47,4 +47,34 @@ export class PostsService {
       })
     )
   }
+
+  loadOneData(id) {
+    return this.afs.collection('posts').doc(id).valueChanges();
+  }
+
+  updateData(id, postData) {
+    this.afs.collection('posts').doc(id).update(postData).then(() => {
+      this.toastr.success("Updated successfully");
+      this.router.navigate(['/posts']);
+    })
+  }
+
+  deleteImage(id, postImgPath) {
+    this.storage.storage.refFromURL(postImgPath).delete().then(() => {
+      this.deleteData(id);
+    })
+  }
+
+  deleteData(id) {
+    this.afs.collection('posts').doc(id).delete().then(() => {
+      this.toastr.warning("Deleted successfully");
+    })
+  }
+
+  markFeatured(id, featuredData) {
+    this.afs.collection('posts').doc(id).update(featuredData).then(() => {
+      this.toastr.info("Featured status changed");
+    })
+  }
+
 }
