@@ -1,4 +1,9 @@
+.box {
+    height: 60vh;
+}
+
 .card {
     height: 200px;
     cursor: pointer;
+
 }
