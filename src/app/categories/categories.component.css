@@ -1,0 +1,17 @@
+.form-grp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=text] {
+    width: 100%;
+}
+
+.btn-sub {
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    margin-left: 710%;
+}

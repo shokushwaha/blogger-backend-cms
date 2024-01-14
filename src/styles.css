@@ -1,0 +1,54 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~ngx-toastr/toastr";
+
+:root {
+    --primary-color: #026467;
+    --secondary-color: #e5f5ea;
+    --body-text-color: #596392;
+    --navbar-footer-color: #f9f9f9;
+}
+
+body {
+    font-size: 13px;
+    color: var(--body-text-color);
+}
+
+.website-logo {
+    padding: 5px 20px;
+    border-radius: 20px;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.bg-theme {
+    background-color: var(--primary-color);
+}
+
+.bg-secondary-theme {
+    background-color: var(--secondary-color);
+}
+
+.text-theme-primary {
+    color: var(--primary-color);
+}
+
+input[type=text],
+input[type=email] {
+    border: none;
+    height: 60px;
+    padding-left: 20px;
+    font-size: 13px;
+    width: 100%;
+}
+
+.btn-sub {
+    height: 58px;
+    border: none;
+    font-size: 13px;
+    background-color: var(--primary-color);
+}
+
+.shadow-effect {
+    border: none;
+    box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.4);
+}
