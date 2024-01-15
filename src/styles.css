@@ -33,7 +33,8 @@ body {
 }
 
 input[type=text],
-input[type=email] {
+input[type=email],
+input[type=password] {
     border: none;
     height: 60px;
     padding-left: 20px;
