@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.userEmail = JSON.parse(localStorage.getItem('user')).email;
     this.isLoggedIn$ = this.authService.isLoggedIn();
+    console.log(this.userEmail)
   }
 
   onLogOut() {

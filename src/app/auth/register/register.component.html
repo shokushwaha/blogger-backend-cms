@@ -5,7 +5,7 @@
             <div class="card p-5 shadow-effect bg-secondary-theme">
                 <div class="card-body">
                     <div class="text-center mb-4">
-                        <h3 class="text-theme-primary">Login</h3>
+                        <h3 class="text-theme-primary">Register</h3>
                     </div>
 
                     <form #loginForm=ngForm (ngSubmit)="onSubmit(loginForm.value)">
@@ -26,11 +26,11 @@
                                 be empty
                             </div>
                         </div>
-                        <button class="btn btn-info btn-block btn-sub" [disabled]="loginForm.invalid">Login</button>
+                        <button class="btn btn-info btn-block btn-sub" [disabled]="loginForm.invalid">Register</button>
                     </form>
                     <div class="regBtn">
-                        <p>Not have an account?</p>
-                        <div class="regSubBtn" routerLink="/register">Register</div>
+                        <p>Already have an account?</p>
+                        <div class="regSubBtn" routerLink="/login">Login</div>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,17 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth, private toastr: ToastrService, private router: Router) {
   }
 
+
+  register(email, password) {
+    this.afAuth.createUserWithEmailAndPassword(email, password).then((ref) => {
+      this.toastr.success("Registered successfully")
+      this.router.navigate(['/login']);
+    })
+      .catch((err) => {
+        this.toastr.warning(err);
+      })
+  }
+
   login(email, password) {
     this.afAuth.signInWithEmailAndPassword(email, password).then((logRef) => {
       this.toastr.success("Login successful");
