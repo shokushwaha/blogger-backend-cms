@@ -1,1 +1,10 @@
-{}
+{
+  "hosting": {
+    "public": "blog-app-backend-cms",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "angular-blogs-ad4b9"
+  },
+  "targets": {
+    "angular-blogs-ad4b9": {
+      "hosting": {
+        "blogger-dashboard-cms": [
+          "dashboard-123"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
